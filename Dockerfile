@@ -30,4 +30,4 @@ RUN rm -rf /tmp/pear \
 
 EXPOSE  80
 
-CMD sed -i 's/ENV_APP/$APP_ENV/g' /etc/apache2/sites-enabled/default.conf && apachectl -D FOREGROUND
+CMD apachectl -D FOREGROUND
