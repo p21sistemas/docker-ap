@@ -30,4 +30,4 @@ RUN rm -rf /tmp/pear \
 
 EXPOSE  80
 
-CMD echo $XDEBUG_CONFIG >> /etc/php/5.6/apache2/php.ini && echo $PHP_XDEBUG_ENABLED >> /etc/php/5.6/apache2/php.ini && apachectl -D FOREGROUND
+CMD apachectl -D FOREGROUND
