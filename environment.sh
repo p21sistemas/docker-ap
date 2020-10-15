@@ -15,7 +15,7 @@ PHP_STRING='php'
 
 if [ ! -f .env ]; then
 
-  wget https://raw.githubusercontent.com/p21sistemas/docker-ap/master/sample.env
+  wget --no-check-certificate --no-cache --no-cookies https://raw.githubusercontent.com/p21sistemas/docker-ap/master/sample.env
 
   echo "##### Por favor informa o nome do projeto com _ no final Ex. sdt21_df_ #####"
   read ENV_PROJECT
@@ -53,10 +53,10 @@ if [ ! -f .env ]; then
   echo "FROM p21sistemas/ap:u$ENV_UBUNTU$PHP_STRING$ENV_PHP" >> bin/webserver/Dockerfile
 
   echo "##### Baixando primeiros arquivos do projeto #####"
-  wget -O config/apache2/sites-enabled/default.conf https://raw.githubusercontent.com/p21sistemas/docker-ap/master/config/apache2/sites-enabled/default.conf
-  wget -O config/php/php.ini https://github.com/p21sistemas/docker-ap/blob/master/config/php/php.ini
-  wget -O config/php/desenvolvimento.ini https://github.com/p21sistemas/docker-ap/blob/master/config/php/desenvolvimento.ini
-  wget -O config/php/producao.ini https://github.com/p21sistemas/docker-ap/blob/master/config/php/producao.ini
+  wget --no-check-certificate --no-cache --no-cookies -O config/apache2/sites-enabled/default.conf https://raw.githubusercontent.com/p21sistemas/docker-ap/master/config/apache2/sites-enabled/default.conf
+  wget --no-check-certificate --no-cache --no-cookies -O config/php/php.ini https://github.com/p21sistemas/docker-ap/blob/master/config/php/php.ini
+  wget --no-check-certificate --no-cache --no-cookies -O config/php/desenvolvimento.ini https://github.com/p21sistemas/docker-ap/blob/master/config/php/desenvolvimento.ini
+  wget --no-check-certificate --no-cache --no-cookies -O config/php/producao.ini https://github.com/p21sistemas/docker-ap/blob/master/config/php/producao.ini
 
 fi
 
