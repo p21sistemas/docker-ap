@@ -19,7 +19,7 @@ if [ ! -f .env ]; then
 
   echo "##### Configuração inicial do projeto #####"
 
-  wget --no-check-certificate --no-cache --no-cookies https://raw.githubusercontent.com/p21sistemas/docker-ap/master/sample.env
+  wget --no-check-certificate --no-cache --no-cookies -q https://raw.githubusercontent.com/p21sistemas/docker-ap/master/sample.env
 
   echo "##### Por favor informa o nome do projeto com _ no final Ex. sdt21_df_ #####"
   read ENV_PROJECT
@@ -56,10 +56,10 @@ if [ ! -f .env ]; then
   echo "FROM p21sistemas/ap:u$ENV_UBUNTU$PHP_STRING$ENV_PHP" >> bin/webserver/Dockerfile
 
   echo "##### Baixando primeiros arquivos do projeto #####"
-  wget --no-check-certificate --no-cache --no-cookies -O config/apache2/sites-enabled/default.conf https://raw.githubusercontent.com/p21sistemas/docker-ap/master/config/apache2/sites-enabled/default.conf
-  wget --no-check-certificate --no-cache --no-cookies -O config/php/php.ini https://github.com/p21sistemas/docker-ap/blob/master/config/php/php.ini
-  wget --no-check-certificate --no-cache --no-cookies -O config/php/desenvolvimento.ini https://github.com/p21sistemas/docker-ap/blob/master/config/php/desenvolvimento.ini
-  wget --no-check-certificate --no-cache --no-cookies -O config/php/producao.ini https://github.com/p21sistemas/docker-ap/blob/master/config/php/producao.ini
+  wget --no-check-certificate --no-cache --no-cookies -O -q config/apache2/sites-enabled/default.conf https://raw.githubusercontent.com/p21sistemas/docker-ap/master/config/apache2/sites-enabled/default.conf
+  wget --no-check-certificate --no-cache --no-cookies -O -q config/php/php.ini https://github.com/p21sistemas/docker-ap/blob/master/config/php/php.ini
+  wget --no-check-certificate --no-cache --no-cookies -O -q config/php/desenvolvimento.ini https://github.com/p21sistemas/docker-ap/blob/master/config/php/desenvolvimento.ini
+  wget --no-check-certificate --no-cache --no-cookies -O -q config/php/producao.ini https://github.com/p21sistemas/docker-ap/blob/master/config/php/producao.ini
 
   echo "##### Gerando arquivo .env #####"
   cp sample.env .env
@@ -71,10 +71,10 @@ rm bin/webserver/.env bin/webserver/start.sh start.sh sample.env
 rm bin/webserver/.env.* bin/webserver/start.sh.* start.sh.* sample.env.*
 
 echo "##### Baixando arquivos essenciais #####"
-wget --no-check-certificate --no-cache --no-cookies -nc https://raw.githubusercontent.com/p21sistemas/docker-ap/master/README.DOCKER.md
-wget --no-check-certificate --no-cache --no-cookies -nc https://raw.githubusercontent.com/p21sistemas/docker-ap/master/docker-compose.yml
-wget --no-check-certificate --no-cache --no-cookies -nc https://raw.githubusercontent.com/p21sistemas/docker-ap/master/exec.sh && chmod +x ambiente.sh
-wget --no-check-certificate --no-cache --no-cookies -nc https://raw.githubusercontent.com/p21sistemas/docker-ap/master/start.sh && chmod +x start.sh
+wget --no-check-certificate --no-cache --no-cookies -nc -q https://raw.githubusercontent.com/p21sistemas/docker-ap/master/README.DOCKER.md
+wget --no-check-certificate --no-cache --no-cookies -nc -q https://raw.githubusercontent.com/p21sistemas/docker-ap/master/docker-compose.yml
+wget --no-check-certificate --no-cache --no-cookies -nc -q https://raw.githubusercontent.com/p21sistemas/docker-ap/master/exec.sh && chmod +x ambiente.sh
+wget --no-check-certificate --no-cache --no-cookies -nc -q https://raw.githubusercontent.com/p21sistemas/docker-ap/master/start.sh && chmod +x start.sh
 
 
 read_var() {
