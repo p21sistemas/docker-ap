@@ -3,6 +3,7 @@ echo "##### Iniciando ambiente #####"
 
 echo "##### Criando variáveis globais #####"
 PHP_STRING='php'
+UNDERLINE='_'
 
 echo "##### Deseja baixar os arquivos de configuração novamente ? (N/y) #####"
 read CONFIG
@@ -21,7 +22,7 @@ if [ ! -f .env ]; then
 
   wget --no-check-certificate --no-cache --no-cookies -q https://raw.githubusercontent.com/p21sistemas/docker-ap/master/sample.env
 
-  echo "##### Por favor informa o nome do projeto com _ no final Ex. sdt21_df_ #####"
+  echo "##### Por favor informa o nome do projeto  Ex. sdt21_df #####"
   read ENV_PROJECT
 
   echo "##### Por favor informa a porta em que o projeto vai estar externamente Ex. 8080 #####"
@@ -30,7 +31,7 @@ if [ ! -f .env ]; then
   echo "##### Por favor informa o ambiente do projeto Ex. desenvolvimento, teste ou producao #####"
   read ENV_APP
 
-  sed -i "s/ENV_PROJECT/$ENV_PROJECT/g" sample.env
+  sed -i "s/ENV_PROJECT/$ENV_PROJECT$UNDERLINE/g" sample.env
   sed -i "s/ENV_PORT/$ENV_PORT/g" sample.env
   sed -i "s/ENV_APP/$ENV_APP/g" sample.env
 
