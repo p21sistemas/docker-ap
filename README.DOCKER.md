@@ -11,12 +11,6 @@ O projeto utiliza uma rede customizada para se comunicar com suas dependências 
 
 [default](link para o projeto default)
 
-# Executando
-Para executar o contêiner:
-
-Depois de subir os containers deafault, execute o seguinte comando na pasta raiz do projeto, dependendo do ambiente em que está.
-
-
 # Diretórios
 ```
  └───docker
@@ -35,10 +29,8 @@ Depois de subir os containers deafault, execute o seguinte comando na pasta raiz
 
 ## Desenvolvimento, teste e produção
 
+Depois de subir os containers deafault, execute o seguinte comando na pasta raiz do projeto, dependendo do ambiente em que está.
 Execute o comando abaixo no terminal e siga os passos
 ```
 $ ./ambiente
 ```
-
-## Observação
-Para reiniciar a configuração basta apagar o arquivo .env na pastas raiz

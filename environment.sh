@@ -78,7 +78,6 @@ wget --no-check-certificate --no-cache --no-cookies --quiet -nc https://raw.gith
 wget --no-check-certificate --no-cache --no-cookies --quiet -nc https://raw.githubusercontent.com/p21sistemas/docker-ap/master/exec.sh && chmod +x exec.sh
 wget --no-check-certificate --no-cache --no-cookies --quiet -nc https://raw.githubusercontent.com/p21sistemas/docker-ap/master/start.sh && chmod +x start.sh
 
-
 read_var() {
     VAR=$(grep $1 $2 | xargs)
     IFS="=" read -ra VAR <<< "$VAR"
