@@ -26,7 +26,6 @@ Esse script é baixado através do arquivo init.sh, dentro de cada projeto;
 
 ` init.sh > environment.sh/exec > start.sh`
 
-
 ## Contribuindo
 
 seja bem-vindo para discutir bugs, recursos e idéias.
