@@ -117,8 +117,3 @@ docker exec -it $(read_var PROJECT_NAME .env)webserver php /usr/share/apache2/ww
 # todo list
 # - Utiliza migrations para criar tabelas do banco e também alimentar o banco com os principais dados, para limar o ambiente de testes.
 # @see https://laravel.com/docs/8.x/migrations Exemplo: https://github.com/jerfeson/slim4-skeleton/blob/master/app/Console/MigrationsCommand.php
-
-exit
-USUARIO="$(whoami)"
-echo "##### Alterando usuário dos arquivos #####"
-chown -R $USUARIO:$USUARIO bin/ config/ logs/ www/ .env docker-compose.yml

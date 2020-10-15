@@ -34,3 +34,15 @@ Execute o comando abaixo no terminal e siga os passos
 ```
 $ ./ambiente
 ```
+
+## Pós instalação
+
+Após iniciar todo projeto lembre de alterar a permissão dos arquivos, execute esse comando na pasta no seu projeto
+
+`$ chown -R $USUARIO:GRUPO projeto/`
+
+### Erros comuns
+
+É muito comum erro de permissão de pasta na pata data, a localização dessa pasta depende de cada projeto, por isso não é interessante tentar fazer uma configuração global, se você não sabe exatamente onde a pasta está, para resolver esse problema, execute o seguinte comando
+
+`$ chown -R $USUARIO:www-data data/ && chmod -R ug+w data/`
