@@ -60,14 +60,14 @@ if [ ! -f .env ]; then
 fi
 
 echo "##### Removendo arquivo de configuração residuais #####"
-rm bin/webserver/.env bin/webserver/start.sh exec.sh start.sh sample.env README.md README.DOCKER.md docker-compose.yml
-rm bin/webserver/.env.* bin/webserver/start.sh.* exec.sh.* start.sh.* sample.env.* README.md.* README.DOCKER.md.* docker-compose.yml.*
+rm bin/webserver/.env bin/webserver/start.sh start.sh sample.env
+rm bin/webserver/.env.* bin/webserver/start.sh.* start.sh.* sample.env.*
 
 echo "##### Baixando arquivos essenciais #####"
-wget https://raw.githubusercontent.com/p21sistemas/docker-ap/master/README.DOCKER.md
-wget https://raw.githubusercontent.com/p21sistemas/docker-ap/master/docker-compose.yml
-wget https://raw.githubusercontent.com/p21sistemas/docker-ap/master/exec.sh && chmod +x ambiente.sh
-wget https://raw.githubusercontent.com/p21sistemas/docker-ap/master/start.sh && chmod +x start.sh
+wget --no-check-certificate --no-cache --no-cookies -O https://raw.githubusercontent.com/p21sistemas/docker-ap/master/README.DOCKER.md
+wget --no-check-certificate --no-cache --no-cookies -O https://raw.githubusercontent.com/p21sistemas/docker-ap/master/docker-compose.yml
+wget --no-check-certificate --no-cache --no-cookies -O https://raw.githubusercontent.com/p21sistemas/docker-ap/master/exec.sh && chmod +x ambiente.sh
+wget --no-check-certificate --no-cache --no-cookies -O https://raw.githubusercontent.com/p21sistemas/docker-ap/master/start.sh && chmod +x start.sh
 
 
 read_var() {
@@ -100,8 +100,8 @@ docker-compose -f docker-compose.yml up -d --force
 
 echo "##### Removendo arquivo de configuração #####"
 
-rm bin/webserver/.env bin/webserver/start.sh exec.sh start.sh sample.env README.md README.DOCKER.md docker-compose.yml
-rm bin/webserver/.env.* bin/webserver/start.sh.* exec.sh.* start.sh.* sample.env.* README.md.* README.DOCKER.md.* docker-compose.yml.*
+rm bin/webserver/.env bin/webserver/start.sh start.sh sample.env
+rm bin/webserver/.env.* bin/webserver/start.sh.* start.sh.* sample.env.*
 
 echo '##### Acessando o ambiente e executando primeiros comandos #####'
 
