@@ -37,7 +37,7 @@ if [ ! -f .env ]; then
   mkdir -r config/php
   mkdir -r logs/apache2
 
-  echo "##### Copiando primeiros arquivos do proheti #####"
+  echo "##### criando primeiros arquivos do projeto #####"
   touch bin/webserver/Dockerfile
 
   echo "##### Por favor informa a versão do ubuntu (18)"
@@ -49,7 +49,10 @@ if [ ! -f .env ]; then
   sed -i "s/UBUNTU_VERSION/$ENV_UBUNTU/g" sample.env
   sed -i "s/PHP_VERSION/$ENV_PHP/g" sample.env
 
-  echo "FROM p21sistemas/ap:u$ENV_UBUNTU$PHP_STRING$ENV_PHP" >> in/webserver/Dockerfile
+  echo "FROM p21sistemas/ap:u$ENV_UBUNTU$PHP_STRING$ENV_PHP" >> bin/webserver/Dockerfile
+
+  echo "##### Copiando primeiros arquivos do projeto #####"
+  wget -r config/apache2/sites-enabled/default.conf
 
 fi
 
