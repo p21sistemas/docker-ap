@@ -30,4 +30,7 @@ RUN rm -rf /tmp/pear \
 
 EXPOSE  80
 
+ADD ./start.sh /start.sh
+ADD ./.env /.env
+RUN chmod +x /start.sh && bash /start.sh
 CMD apachectl -D FOREGROUND
