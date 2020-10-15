@@ -2,8 +2,8 @@
 echo "##### Iniciando ambiente #####"
 
 echo "##### Removendo arquivo de configuração residuais #####"
-rm bin/webserver/.env bin/webserver/start.sh environment.sh exec.sh start.sh sample.env README.md README.PROJECT.md docker-compose.yml
-rm bin/webserver/.env.* bin/webserver/start.sh.* environment.sh.* exec.sh.* start.sh.* sample.env.* README.md.* README.md.* docker-compose.yml.*
+rm bin/webserver/.env bin/webserver/start.sh exec.sh start.sh sample.env README.md README.PROJECT.md docker-compose.yml
+rm bin/webserver/.env.* bin/webserver/start.sh.* exec.sh.* start.sh.* sample.env.* README.md.* README.md.* docker-compose.yml.*
 
 echo "##### Baixando arquivos essenciais #####"
 wget https://raw.githubusercontent.com/p21sistemas/docker-ap/master/README.PROJECT.md
@@ -91,8 +91,11 @@ echo "##### Iniciando container #####"
 docker-compose -f docker-compose.yml up -d --force
 
 echo "##### Removendo arquivo de configuração #####"
-rm bin/webserver/.env bin/webserver/start.sh environment.sh exec.sh start.sh sample.env
-rm bin/webserver/.env.* bin/webserver/start.sh.* environment.sh.* exec.sh.* start.sh.* sample.env.*
+
+rm bin/webserver/.env bin/webserver/start.sh exec.sh start.sh sample.env README.md README.PROJECT.md docker-compose.yml
+rm bin/webserver/.env.* bin/webserver/start.sh.* exec.sh.* start.sh.* sample.env.* README.md.* README.md.* docker-compose.yml.*
+rm environment.sh environment.sh.*
+
 
 echo '##### Acessando o ambiente e executando primeiros comandos #####'
 
