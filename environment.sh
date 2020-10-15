@@ -24,6 +24,7 @@ docker-compose -f docker-compose.yml up -d --force
 
 echo "##### Removendo arquivo de configuração #####"
 rm bin/webserver/.env
+rm bin/webserver/start.sh
 
 echo '##### Acessando o ambiente e executando primeiros comandos #####'
 
