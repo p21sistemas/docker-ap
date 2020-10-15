@@ -2,7 +2,7 @@
 echo "##### Iniciando ambiente #####"
 
 echo "##### Removendo arquivo de configuração residuais #####"
-rm bin/webserver/.env bin/webserver/start.sh exec.sh start.sh sample.env README.md README.PROJECT.md. docker-compose.yml
+rm bin/webserver/.env bin/webserver/start.sh exec.sh start.sh sample.env README.md README.PROJECT.md docker-compose.yml
 rm bin/webserver/.env.* bin/webserver/start.sh.* exec.sh.* start.sh.* sample.env.* README.md.* README.PROJECT.md.* docker-compose.yml.*
 
 echo "##### Baixando arquivos essenciais #####"
