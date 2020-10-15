@@ -1,6 +1,7 @@
 #!/bin/bash
 echo "##### Iniciando ambiente #####"
-
+USUARIO=whoami
+sudo su
 echo "##### Removendo arquivo de configuração residuais #####"
 rm bin/webserver/.env bin/webserver/start.sh exec.sh start.sh sample.env README.md README.PROJECT.md docker-compose.yml
 rm bin/webserver/.env.* bin/webserver/start.sh.* exec.sh.* start.sh.* sample.env.* README.md.* README.PROJECT.md.* docker-compose.yml.*
@@ -29,7 +30,6 @@ if [ ! -f .env ]; then
   sed -i "s/ENV_PROJECT/$ENV_PROJECT/g" sample.env
   sed -i "s/ENV_PORT/$ENV_PORT/g" sample.env
   sed -i "s/ENV_APP/$ENV_APP/g" sample.env
-  cp sample.env .env
 
   echo "##### Criando pastas do projeto #####"
   mkdir -p bin/webserver
@@ -57,6 +57,9 @@ if [ ! -f .env ]; then
   wget --no-check-certificate --no-cache --no-cookies -O config/php/php.ini https://github.com/p21sistemas/docker-ap/blob/master/config/php/php.ini
   wget --no-check-certificate --no-cache --no-cookies -O config/php/desenvolvimento.ini https://github.com/p21sistemas/docker-ap/blob/master/config/php/desenvolvimento.ini
   wget --no-check-certificate --no-cache --no-cookies -O config/php/producao.ini https://github.com/p21sistemas/docker-ap/blob/master/config/php/producao.ini
+
+  chown -R USUARIO:USUARIO bin/ config/ logs/ .env docker-compose.yml README.md
+  cp sample.env .env
 
 fi
 
