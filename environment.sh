@@ -39,6 +39,7 @@ if [ ! -f .env ]; then
 
   echo "##### criando primeiros arquivos do projeto #####"
   touch bin/webserver/Dockerfile
+  touch logs/apache2/.gitkeep
 
   echo "##### Por favor informa a versão do ubuntu (18)"
   read ENV_UBUNTU
@@ -51,8 +52,11 @@ if [ ! -f .env ]; then
 
   echo "FROM p21sistemas/ap:u$ENV_UBUNTU$PHP_STRING$ENV_PHP" >> bin/webserver/Dockerfile
 
-  echo "##### Copiando primeiros arquivos do projeto #####"
-  wget -r config/apache2/sites-enabled/default.conf
+  echo "##### Baixando primeiros arquivos do projeto #####"
+  wget -r config/apache2/sites-enabled/default.conf https://raw.githubusercontent.com/p21sistemas/docker-ap/master/config/apache2/sites-enabled/default.conf
+  wget -r config/php/php.ini https://github.com/p21sistemas/docker-ap/blob/master/config/php/php.ini
+  wget -r config/php/desenvolvimento.ini https://github.com/p21sistemas/docker-ap/blob/master/config/php/desenvolvimento.ini
+  wget -r config/php/producao.ini https://github.com/p21sistemas/docker-ap/blob/master/config/php/producao.ini
 
 fi
 
