@@ -11,8 +11,21 @@ This is the Git repository of the Docker image for apache with PHP. See a Hub pa
 | php72 | php72 Branch | 2.4 | 7.2.x | 18.04 |
 | php73 | php73 Branch | 2.4 | 7.3.x | 18.04 |
 
+## environment.sh
+Esse script é baixado através do arquivo init.sh, dentro de cada projeto;
+
 ## start.sh
-Esse scrip é baixado atraves do ambiente.sh presentante em cada projeto, o arquivo ambiente.sh é responsável por montar o ambiente
+Esse script é baixado através do arquivo environment.sh de cada projeto, ele será executado dentro do container para realizar algumas configurações
+
+Ele está nesse repositório por uma questão de limitação técnica/docker de lidar com variaveis
+
+## exec.sh 
+Esse script é baixado através do arquivo init.sh, dentro de cada projeto;
+
+### Ordem de execução
+
+` init.sh > environment.sh/exec > start.sh`
+
 
 ## Contribuindo
 
