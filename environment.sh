@@ -2,8 +2,8 @@
 echo "##### Iniciando ambiente #####"
 
 echo "##### Removendo arquivo de configuração residuais #####"
-rm bin/webserver/.env bin/webserver/start.sh environment.sh exec.sh start.sh sample.env README.md
-rm bin/webserver/.env.* bin/webserver/start.sh.* environment.sh.* exec.sh.* start.sh.* sample.env.* README.md.*
+rm bin/webserver/.env bin/webserver/start.sh environment.sh exec.sh start.sh sample.env README.md README.PROJECT.md
+rm bin/webserver/.env.* bin/webserver/start.sh.* environment.sh.* exec.sh.* start.sh.* sample.env.* README.md.* README.md.*
 
 echo "##### Baixando arquivos essenciais #####"
 wget https://raw.githubusercontent.com/p21sistemas/docker-ap/master/README.PROJECT.md
@@ -32,10 +32,10 @@ if [ ! -f .env ]; then
   cp sample.env .env
 
   echo "##### Criando pastas do projeto #####"
-  mkdir -r bin/webserver
-  mkdir -r config/apache2/sites-enabled
-  mkdir -r config/php
-  mkdir -r logs/apache2
+  mkdir -p bin/webserver
+  mkdir -p config/apache2/sites-enabled
+  mkdir -p config/php
+  mkdir -p logs/apache2
 
   echo "##### criando primeiros arquivos do projeto #####"
   touch bin/webserver/Dockerfile
