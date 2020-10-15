@@ -2,8 +2,8 @@
 echo "##### Iniciando ambiente #####"
 
 echo "##### Removendo arquivo de configuração residuais #####"
-rm bin/webserver/.env bin/webserver/start.sh exec.sh start.sh sample.env README.md README.PROJECT.md docker-compose.yml
-rm bin/webserver/.env.* bin/webserver/start.sh.* exec.sh.* start.sh.* sample.env.* README.md.* README.md.* docker-compose.yml.*
+rm bin/webserver/.env bin/webserver/start.sh exec.sh start.sh sample.env README.md README.PROJECT.md. docker-compose.yml
+rm bin/webserver/.env.* bin/webserver/start.sh.* exec.sh.* start.sh.* sample.env.* README.md.* README.PROJECT.md.* docker-compose.yml.*
 
 echo "##### Baixando arquivos essenciais #####"
 wget https://raw.githubusercontent.com/p21sistemas/docker-ap/master/README.PROJECT.md
@@ -53,10 +53,10 @@ if [ ! -f .env ]; then
   echo "FROM p21sistemas/ap:u$ENV_UBUNTU$PHP_STRING$ENV_PHP" >> bin/webserver/Dockerfile
 
   echo "##### Baixando primeiros arquivos do projeto #####"
-  wget -r config/apache2/sites-enabled/default.conf https://raw.githubusercontent.com/p21sistemas/docker-ap/master/config/apache2/sites-enabled/default.conf
-  wget -r config/php/php.ini https://github.com/p21sistemas/docker-ap/blob/master/config/php/php.ini
-  wget -r config/php/desenvolvimento.ini https://github.com/p21sistemas/docker-ap/blob/master/config/php/desenvolvimento.ini
-  wget -r config/php/producao.ini https://github.com/p21sistemas/docker-ap/blob/master/config/php/producao.ini
+  wget -O config/apache2/sites-enabled/default.conf https://raw.githubusercontent.com/p21sistemas/docker-ap/master/config/apache2/sites-enabled/default.conf
+  wget -O config/php/php.ini https://github.com/p21sistemas/docker-ap/blob/master/config/php/php.ini
+  wget -O config/php/desenvolvimento.ini https://github.com/p21sistemas/docker-ap/blob/master/config/php/desenvolvimento.ini
+  wget -O config/php/producao.ini https://github.com/p21sistemas/docker-ap/blob/master/config/php/producao.ini
 
 fi
 
@@ -92,8 +92,8 @@ docker-compose -f docker-compose.yml up -d --force
 
 echo "##### Removendo arquivo de configuração #####"
 
-rm bin/webserver/.env bin/webserver/start.sh exec.sh start.sh sample.env README.md README.PROJECT.md docker-compose.yml
-rm bin/webserver/.env.* bin/webserver/start.sh.* exec.sh.* start.sh.* sample.env.* README.md.* README.md.* docker-compose.yml.*
+rm bin/webserver/.env bin/webserver/start.sh exec.sh start.sh sample.env README.md README.PROJECT.md. docker-compose.yml
+rm bin/webserver/.env.* bin/webserver/start.sh.* exec.sh.* start.sh.* sample.env.* README.md.* README.PROJECT.md.* docker-compose.yml.*
 rm environment.sh environment.sh.*
 
 
