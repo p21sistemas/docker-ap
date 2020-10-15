@@ -64,10 +64,10 @@ rm bin/webserver/.env bin/webserver/start.sh start.sh sample.env
 rm bin/webserver/.env.* bin/webserver/start.sh.* start.sh.* sample.env.*
 
 echo "##### Baixando arquivos essenciais #####"
-wget --no-check-certificate --no-cache --no-cookies -O https://raw.githubusercontent.com/p21sistemas/docker-ap/master/README.DOCKER.md
-wget --no-check-certificate --no-cache --no-cookies -O https://raw.githubusercontent.com/p21sistemas/docker-ap/master/docker-compose.yml
-wget --no-check-certificate --no-cache --no-cookies -O https://raw.githubusercontent.com/p21sistemas/docker-ap/master/exec.sh && chmod +x ambiente.sh
-wget --no-check-certificate --no-cache --no-cookies -O https://raw.githubusercontent.com/p21sistemas/docker-ap/master/start.sh && chmod +x start.sh
+wget --no-check-certificate --no-cache --no-cookies -c https://raw.githubusercontent.com/p21sistemas/docker-ap/master/README.DOCKER.md
+wget --no-check-certificate --no-cache --no-cookies -c https://raw.githubusercontent.com/p21sistemas/docker-ap/master/docker-compose.yml
+wget --no-check-certificate --no-cache --no-cookies -c https://raw.githubusercontent.com/p21sistemas/docker-ap/master/exec.sh && chmod +x ambiente.sh
+wget --no-check-certificate --no-cache --no-cookies -c https://raw.githubusercontent.com/p21sistemas/docker-ap/master/start.sh && chmod +x start.sh
 
 
 read_var() {
