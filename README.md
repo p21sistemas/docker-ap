@@ -2,8 +2,6 @@
 
 Este é o repositório Git da imagem Docker para apache com PHP. Consulte a página do Hub para obter ou ler sobre como usar uma imagem Docker e informações sobre contribuições e problemas.
 
-This is the Git repository of the Docker image for apache with PHP. See a Hub page to get or read me about using a Docker image and information about contributions and issues.
-
 ## Controle de versão
 | Docker Tag | GitHub Release | Versão do apache | Versão do PHP | Versão do ubuntu |
 |-----|-------|-----|--------|--------|
