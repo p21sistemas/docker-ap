@@ -3,11 +3,14 @@ echo "##### Iniciando ambiente #####"
 
 echo "##### Removendo arquivo de configuração residuais #####"
 rm bin/webserver/.env bin/webserver/start.sh environment.sh exec.sh start.sh sample.env
-rm bin/webserver/.env.* bin/webserver/start.sh.* environment.sh.* exec.sh start.sh.* sample.env.*
+rm bin/webserver/.env.* bin/webserver/start.sh.* environment.sh.* exec.sh.* start.sh.* sample.env.*
 
 echo "##### Baixando arquivos essenciais #####"
 wget https://raw.githubusercontent.com/p21sistemas/docker-ap/master/exec.sh && chmod +x ambiente.sh
 wget https://raw.githubusercontent.com/p21sistemas/docker-ap/master/start.sh && chmod +x start.sh
+
+if [ ! -f .env ]; then
+
 wget https://raw.githubusercontent.com/p21sistemas/docker-ap/master/sample.env
 
 echo "##### Por favor informa o nome do projeto com _ no final Ex. sdt21_df_ #####"
@@ -22,10 +25,11 @@ read ENV_APP
 sed -i "s/ENV_PROJECT/$ENV_PROJECT/g" sample.env
 sed -i "s/ENV_PORT/$ENV_PORT/g" sample.env
 sed -i "s/ENV_APP/$ENV_APP/g" sample.env
+cp sample.env .env
 
+fi
 
 echo "##### Copiando arquivos de configuração #####"
-cp sample.env .env
 cp .env bin/webserver/
 cp start.sh bin/webserver/
 
@@ -48,7 +52,7 @@ docker-compose -f docker-compose.yml up -d --force
 
 echo "##### Removendo arquivo de configuração #####"
 rm bin/webserver/.env bin/webserver/start.sh environment.sh exec.sh start.sh sample.env
-rm bin/webserver/.env.* bin/webserver/start.sh.* environment.sh.* exec.sh start.sh.* sample.env.*
+rm bin/webserver/.env.* bin/webserver/start.sh.* environment.sh.* exec.sh.* start.sh.* sample.env.*
 
 echo '##### Acessando o ambiente e executando primeiros comandos #####'
 
