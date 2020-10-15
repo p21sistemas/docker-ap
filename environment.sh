@@ -73,7 +73,6 @@ rm -f bin/webserver/.env bin/webserver/start.sh start.sh sample.env
 rm -f bin/webserver/.env.* bin/webserver/start.sh.* start.sh.* sample.env.*
 
 echo "##### Baixando arquivos essenciais #####"
-wget --no-check-certificate --no-cache --no-cookies --quiet -nc https://raw.githubusercontent.com/p21sistemas/docker-ap/master/README.DOCKER.md
 wget --no-check-certificate --no-cache --no-cookies --quiet -nc https://raw.githubusercontent.com/p21sistemas/docker-ap/master/docker-compose.yml
 wget --no-check-certificate --no-cache --no-cookies --quiet -nc https://raw.githubusercontent.com/p21sistemas/docker-ap/master/exec.sh && chmod +x exec.sh
 wget --no-check-certificate --no-cache --no-cookies --quiet -nc https://raw.githubusercontent.com/p21sistemas/docker-ap/master/start.sh && chmod +x start.sh
@@ -122,4 +121,4 @@ docker exec -it $(read_var PROJECT_NAME .env)webserver php /usr/share/apache2/ww
 exit
 USUARIO="$(whoami)"
 echo "##### Alterando usuário dos arquivos #####"
-chown -R $USUARIO:$USUARIO bin/ config/ logs/ www/ .env docker-compose.yml README.DOCKER.md
+chown -R $USUARIO:$USUARIO bin/ config/ logs/ www/ .env docker-compose.yml
