@@ -47,8 +47,8 @@ if [ ! -f .env ]; then
   echo "##### Por favor informa a versão do php (56, 72, 73)"
   read ENV_PHP
 
-  sed -i "s/UBUNTU_VERSION/$ENV_UBUNTU/g" sample.env
-  sed -i "s/PHP_VERSION/$ENV_PHP/g" sample.env
+  sed -i "s/ENV_UBUNTU/$ENV_UBUNTU/g" sample.env
+  sed -i "s/ENV_PHP/$ENV_PHP/g" sample.env
 
   echo "FROM p21sistemas/ap:u$ENV_UBUNTU$PHP_STRING$ENV_PHP" >> bin/webserver/Dockerfile
 
@@ -69,7 +69,7 @@ read_var() {
 echo "##### Copiando arquivos de configuração #####"
 cp .env bin/webserver/
 cp start.sh bin/webserver/
-cp README.PROJECT.md cp README.md
+cp README.PROJECT.md README.md
 
 echo "##### Atualizando imagem #####"
 
@@ -96,9 +96,7 @@ rm bin/webserver/.env bin/webserver/start.sh exec.sh start.sh sample.env README.
 rm bin/webserver/.env.* bin/webserver/start.sh.* exec.sh.* start.sh.* sample.env.* README.md.* README.PROJECT.md.* docker-compose.yml.*
 rm environment.sh environment.sh.*
 
-
 echo '##### Acessando o ambiente e executando primeiros comandos #####'
-
 
 docker exec -it $(read_var PROJECT_NAME .env)webserver php /usr/share/apache2/www/composer.phar install -d /usr/share/apache2/www
 
