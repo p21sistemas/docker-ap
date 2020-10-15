@@ -4,8 +4,6 @@ echo "##### Iniciando ambiente #####"
 echo "##### Criando variáveis globais #####"
 PHP_STRING='php'
 
-sudo su
-
 if [ ! -f .env ]; then
   if [ ! -d "www/" ]; then
     echo "##### Configuração inicial do projeto #####"
