@@ -3,8 +3,8 @@ echo "##### Iniciando ambiente #####"
 
 echo "##### Copiando arquivos de configuração #####"
 cp .env bin/webserver/
-echo "##### Baixando shell script #####"
-wget
+cp start.sh bin/webserver/
+
 echo "##### Atualizando imagem #####"
 docker pull p21sistemas/ap:php56
 
