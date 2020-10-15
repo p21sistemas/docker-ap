@@ -3,11 +3,11 @@ echo "##### Iniciando ambiente #####"
 USUARIO=whoami
 sudo su
 echo "##### Removendo arquivo de configuração residuais #####"
-rm bin/webserver/.env bin/webserver/start.sh exec.sh start.sh sample.env README.md README.PROJECT.md docker-compose.yml
-rm bin/webserver/.env.* bin/webserver/start.sh.* exec.sh.* start.sh.* sample.env.* README.md.* README.PROJECT.md.* docker-compose.yml.*
+rm bin/webserver/.env bin/webserver/start.sh exec.sh start.sh sample.env README.md README.DOCKER.md docker-compose.yml
+rm bin/webserver/.env.* bin/webserver/start.sh.* exec.sh.* start.sh.* sample.env.* README.md.* README.DOCKER.md.* docker-compose.yml.*
 
 echo "##### Baixando arquivos essenciais #####"
-wget https://raw.githubusercontent.com/p21sistemas/docker-ap/master/README.PROJECT.md
+wget https://raw.githubusercontent.com/p21sistemas/docker-ap/master/README.DOCKER.md
 wget https://raw.githubusercontent.com/p21sistemas/docker-ap/master/docker-compose.yml
 wget https://raw.githubusercontent.com/p21sistemas/docker-ap/master/exec.sh && chmod +x ambiente.sh
 wget https://raw.githubusercontent.com/p21sistemas/docker-ap/master/start.sh && chmod +x start.sh
@@ -58,7 +58,7 @@ if [ ! -f .env ]; then
   wget --no-check-certificate --no-cache --no-cookies -O config/php/desenvolvimento.ini https://github.com/p21sistemas/docker-ap/blob/master/config/php/desenvolvimento.ini
   wget --no-check-certificate --no-cache --no-cookies -O config/php/producao.ini https://github.com/p21sistemas/docker-ap/blob/master/config/php/producao.ini
 
-  chown -R USUARIO:USUARIO bin/ config/ logs/ .env docker-compose.yml README.md
+  chown -R USUARIO:USUARIO bin/ config/ logs/ .env docker-compose.yml README.DOCKER.md
   cp sample.env .env
 
 fi
@@ -72,7 +72,6 @@ read_var() {
 echo "##### Copiando arquivos de configuração #####"
 cp .env bin/webserver/
 cp start.sh bin/webserver/
-cp README.PROJECT.md README.md
 
 echo "##### Atualizando imagem #####"
 
@@ -95,9 +94,8 @@ docker-compose -f docker-compose.yml up -d --force
 
 echo "##### Removendo arquivo de configuração #####"
 
-rm bin/webserver/.env bin/webserver/start.sh exec.sh start.sh sample.env README.md README.PROJECT.md. docker-compose.yml
-rm bin/webserver/.env.* bin/webserver/start.sh.* exec.sh.* start.sh.* sample.env.* README.md.* README.PROJECT.md.* docker-compose.yml.*
-rm environment.sh environment.sh.*
+rm bin/webserver/.env bin/webserver/start.sh exec.sh start.sh sample.env README.md README.DOCKER.md docker-compose.yml
+rm bin/webserver/.env.* bin/webserver/start.sh.* exec.sh.* start.sh.* sample.env.* README.md.* README.DOCKER.md.* docker-compose.yml.*
 
 echo '##### Acessando o ambiente e executando primeiros comandos #####'
 
