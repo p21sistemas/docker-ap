@@ -3,6 +3,7 @@ echo "##### Iniciando ambiente #####"
 
 echo "##### Criando variáveis globais #####"
 PHP_STRING='php'
+
 UNDERLINE='_'
 
 echo "##### Deseja baixar os arquivos de configuração novamente ? (N/y) #####"
