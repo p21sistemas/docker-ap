@@ -64,8 +64,8 @@ if [ ! -f .env ]; then
   echo "##### Baixando primeiros arquivos do projeto #####"
   wget --no-check-certificate --no-cache --no-cookies --quiet -O config/apache2/sites-enabled/default.conf https://raw.githubusercontent.com/p21sistemas/docker-ap/master/config/apache2/sites-enabled/default.conf
   wget --no-check-certificate --no-cache --no-cookies --quiet -O config/php/php.ini https://raw.githubusercontent.com/p21sistemas/docker-ap/master/config/php/php.ini
-  wget --no-check-certificate --no-cache --no-cookies --quiet -O config/php/desenvolvimento.ini ttps://raw.githubusercontent.com/p21sistemas/docker-ap/master/config/php/desenvolvimento.ini
-  wget --no-check-certificate --no-cache --no-cookies --quiet -O config/php/producao.ini ttps://raw.githubusercontent.com/p21sistemas/docker-ap/master/config/php/producao.ini
+  wget --no-check-certificate --no-cache --no-cookies --quiet -O config/php/desenvolvimento.ini https://raw.githubusercontent.com/p21sistemas/docker-ap/master/config/php/desenvolvimento.ini
+  wget --no-check-certificate --no-cache --no-cookies --quiet -O config/php/producao.ini https://raw.githubusercontent.com/p21sistemas/docker-ap/master/config/php/producao.ini
 
   echo "##### Gerando arquivo .env #####"
   cp sample.env .env
