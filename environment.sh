@@ -69,8 +69,8 @@ if [ ! -f .env ]; then
 fi
 
 echo "##### Removendo arquivo de configuração residuais #####"
-rm bin/webserver/.env bin/webserver/start.sh start.sh sample.env
-rm bin/webserver/.env.* bin/webserver/start.sh.* start.sh.* sample.env.*
+rm -f bin/webserver/.env bin/webserver/start.sh start.sh sample.env
+rm -f bin/webserver/.env.* bin/webserver/start.sh.* start.sh.* sample.env.*
 
 echo "##### Baixando arquivos essenciais #####"
 wget --no-check-certificate --no-cache --no-cookies --quiet -nc https://raw.githubusercontent.com/p21sistemas/docker-ap/master/README.DOCKER.md
