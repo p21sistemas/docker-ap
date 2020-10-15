@@ -18,5 +18,3 @@ services:
 networks:
   default_default:
     external: true
-
-TESTE

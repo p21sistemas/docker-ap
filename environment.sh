@@ -4,6 +4,13 @@ echo "##### Iniciando ambiente #####"
 echo "##### Criando variáveis globais #####"
 PHP_STRING='php'
 
+echo "##### Deseja baixar os arquivos de configuração novamente ? (N/y) #####"
+read CONFIG
+
+if [ $CONFIG == 'y' ]; then
+    rm docker-compose.yml .env
+fi
+
 if [ ! -f .env ]; then
   if [ ! -d "www/" ]; then
     echo "##### Configuração inicial do projeto #####"
@@ -64,10 +71,10 @@ rm bin/webserver/.env bin/webserver/start.sh start.sh sample.env
 rm bin/webserver/.env.* bin/webserver/start.sh.* start.sh.* sample.env.*
 
 echo "##### Baixando arquivos essenciais #####"
-wget --no-check-certificate --no-cache --no-cookies -c https://raw.githubusercontent.com/p21sistemas/docker-ap/master/README.DOCKER.md
-wget --no-check-certificate --no-cache --no-cookies -c https://raw.githubusercontent.com/p21sistemas/docker-ap/master/docker-compose.yml
-wget --no-check-certificate --no-cache --no-cookies -c https://raw.githubusercontent.com/p21sistemas/docker-ap/master/exec.sh && chmod +x ambiente.sh
-wget --no-check-certificate --no-cache --no-cookies -c https://raw.githubusercontent.com/p21sistemas/docker-ap/master/start.sh && chmod +x start.sh
+wget --no-check-certificate --no-cache --no-cookies -nc https://raw.githubusercontent.com/p21sistemas/docker-ap/master/README.DOCKER.md
+wget --no-check-certificate --no-cache --no-cookies -nc https://raw.githubusercontent.com/p21sistemas/docker-ap/master/docker-compose.yml
+wget --no-check-certificate --no-cache --no-cookies -nc https://raw.githubusercontent.com/p21sistemas/docker-ap/master/exec.sh && chmod +x ambiente.sh
+wget --no-check-certificate --no-cache --no-cookies -nc https://raw.githubusercontent.com/p21sistemas/docker-ap/master/start.sh && chmod +x start.sh
 
 
 read_var() {
@@ -85,9 +92,9 @@ echo "##### Atualizando imagem #####"
 docker pull p21sistemas/ap:u$(read_var UBUNTU_VERSION .env)$PHP_STRING$(read_var PHP_VERSION .env)
 
 echo "##### Deseja ignorar o cache o fazer build? ? (N/y) #####"
-read cache
+read CACHE
 
-if [ $cache == 'y' ]; then
+if [ $CACHE == 'y' ]; then
     NOCACHE='--no-cache'
 fi
 
