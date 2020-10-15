@@ -19,7 +19,9 @@ sed -i "s/ENV_PROJECT/$ENV_PROJECT/g" sample.env
 sed -i "s/ENV_PORT/$ENV_PORT/g" sample.env
 sed -i "s/ENV_APP/$ENV_APP/g" sample.env
 
+
 echo "##### Copiando arquivos de configuração #####"
+cp sample.env .env
 cp .env bin/webserver/
 cp start.sh bin/webserver/
 
