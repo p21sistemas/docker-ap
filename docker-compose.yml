@@ -9,6 +9,8 @@ services:
     external_links:
       - redis
       - mysql
+    networks:
+      - container_default
     volumes:
       - ${DOCUMENT_ROOT-./www}:/usr/share/apache2/www
       - ${VHOSTS_DIR-./config/apache2/sites-enabled}:/etc/apache2/sites-enabled/
@@ -16,5 +18,5 @@ services:
       - ./config/php/${APP_ENV}.ini:/etc/php/5.6/apache2/conf.d/${APP_ENV}.ini
       - ${LOG_DIR-./logs/apache2}:/var/log/apache2
 networks:
-  default_default:
+  container_default:
     external: true
