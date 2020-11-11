@@ -67,6 +67,8 @@ if [ ! -f .env ]; then
   wget --no-check-certificate --no-cache --no-cookies --quiet -O config/php/desenvolvimento.ini https://raw.githubusercontent.com/p21sistemas/docker-ap/master/config/php/desenvolvimento.ini
   wget --no-check-certificate --no-cache --no-cookies --quiet -O config/php/producao.ini https://raw.githubusercontent.com/p21sistemas/docker-ap/master/config/php/producao.ini
 
+  sed -i "s/ENV_APP/$ENV_APP/g" config/apache2/sites-enabled/default.conf
+
   echo "##### Gerando arquivo .env #####"
   cp sample.env .env
 
