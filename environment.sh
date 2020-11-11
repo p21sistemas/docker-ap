@@ -10,7 +10,7 @@ echo "##### Deseja baixar os arquivos de configuração novamente ? (N/y) #####"
 read CONFIG
 
 if [ $CONFIG == 'y' ]; then
-    rm -f docker-compose.yml .env exec.sh start.sh bin/Dockerfile
+    rm -f docker-compose.yml .env exec.sh start.sh bin/webserver/Dockerfile
 fi
 
 if [ ! -f .env ]; then
