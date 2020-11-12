@@ -118,7 +118,8 @@ rm -f bin/webserver/.env.* bin/webserver/start.sh.* start.sh.* sample.env.*
 
 echo '##### Acessando o ambiente e executando primeiros comandos #####'
 
-docker exec -it $(read_var PROJECT_NAME .env)webserver php /usr/share/apache2/www/composer.phar install -d /usr/share/apache2/www
+
+#docker exec -it $(read_var PROJECT_NAME .env)webserver php /usr/share/apache2/www/composer.phar install -d /usr/share/apache2/www
 
 # todo list
 # - Utiliza migrations para criar tabelas do banco e também alimentar o banco com os principais dados, para limar o ambiente de testes.
