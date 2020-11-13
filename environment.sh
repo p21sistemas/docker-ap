@@ -1,5 +1,30 @@
 #!/bin/bash
+
+if [ "$EUID" -ne 0 ]
+  then echo "Por favor, execute como root"
+  exit
+fi
+
+DIRECTORY_NGINX='/etc/nginx/'
+
+#########################
+# FUNCTIONS             #
+#########################
+
+
+#########################
+# CODE             #
+#########################
+
 echo "##### Iniciando ambiente #####"
+if [ ! -d $DIRECTORY_NGINX ]; then
+  read -p "##### Deseja instalar o nginx (servidor de proxy) ?  (Y/n)?" INSTALL_NGINX
+  INSTALL_NGINX=${INSTALL_NGINX:-'Y'}
+  if [ $INSTALL_NGINX == 'y' ] || [ $INSTALL_NGINX == 'Y' ]; then
+     apt-get update && apt-get -y upgrade && apt-get  install -y nginx
+  fi
+fi
+
 
 echo "##### Criando variáveis globais #####"
 PHP_STRING='php'
@@ -14,11 +39,7 @@ if [ $CONFIG == 'y' ]; then
 fi
 
 if [ ! -f .env ]; then
-  if [ ! -d "www/" ]; then
-    echo "##### Configuração inicial do projeto #####"
-    mkdir www && mv {,.[^.]}*  www/
-  fi
-
+#
   echo "##### Configuração inicial do projeto #####"
 
   wget --no-check-certificate --no-cache --no-cookies --quiet https://raw.githubusercontent.com/p21sistemas/docker-ap/master/sample.env
@@ -29,8 +50,33 @@ if [ ! -f .env ]; then
   echo "##### Por favor informa a porta em que o projeto vai estar externamente Ex. 8080 #####"
   read ENV_PORT
 
-  echo "##### Por favor informa o ambiente do projeto Ex. desenvolvimento, teste ou producao #####"
+  echo "#####Qual o ambiente do projeto (desenvolvimento, teste ou producao) ? #####"
   read ENV_APP
+
+  if [ $ENV_APP == 'producao' ]; then
+     echo "##### Qual o dominio do projeto ? #####"
+     read ENV_DOMAIN
+  fi
+
+  if [ $ENV_APP != 'desenvolvimento' ] && [ $ENV_APP != 'teste' ] && [ $ENV_APP != 'producao' ]; then
+    echo "##### O ambiente selecionado é inválido #####"
+    exit;
+  fi
+
+  if [ -d $DIRECTORY_NGINX ]; then
+     rm -f "$DIRECTORY_NGINXsites-available/$ENV_PROJECT" "$DIRECTORY_NGINXsites-enabled/$ENV_PROJECT"
+     cp proxy $ENV_PROJECT
+     sed -i "s/PORT_ENV/$ENV_PORT/g" $ENV_PROJECT
+     sed -i "s/DOMAIN_ENV/$ENV_DOMAIN/g" $ENV_PROJECT
+     cp "$ENV_PROJECT" "$DIRECTORY_NGINXsites-available/"
+     ln -s "$DIRECTORY_NGINXsites-available/$ENV_PROJECT" "$DIRECTORY_NGINXsites-enabled/"
+     r, "$ENV_PROJECT"
+  fi
+
+  if [ ! -d "www/" ]; then
+    echo "##### Configuração inicial do projeto #####"
+    mkdir www && mv {,.[^.]}*  www/
+  fi
 
   sed -i "s/ENV_PROJECT/$ENV_PROJECT$UNDERLINE/g" sample.env
   sed -i "s/ENV_PORT/$ENV_PORT/g" sample.env
@@ -118,8 +164,17 @@ rm -f bin/webserver/.env.* bin/webserver/start.sh.* start.sh.* sample.env.*
 
 echo '##### Acessando o ambiente e executando primeiros comandos #####'
 
+read -p "##### Deseja executar o composer ?  (y/N)?" RUN_COMPOSER
+RUN_COMPOSER=${RUN_COMPOSER:-'N'}
+MOD_COMPOSER=''
+if [ $ENV_APP == 'producao' ]; then
+MOD_COMPOSER='--no-dev'
+fi
 
-#docker exec -it $(read_var PROJECT_NAME .env)webserver php /usr/share/apache2/www/composer.phar install -d /usr/share/apache2/www
+if [ RUN_COMPOSER == 'y' ] || [ RUN_COMPOSER == 'Y' ]; then
+    docker exec -it $(read_var PROJECT_NAME .env)webserver php /usr/share/apache2/www/composer.phar install $MOD_COMPOSER -d /usr/share/apache2/www
+fi
+
 
 # todo list
 # - Utiliza migrations para criar tabelas do banco e também alimentar o banco com os principais dados, para limar o ambiente de testes.
