@@ -65,7 +65,7 @@ if [ ! -f .env ]; then
 
   if [ ! -d "www/" ]; then
     echo "##### Configuração inicial do projeto #####"
-    mkdir www && mv {,.[^.]}*  www/
+    mkdir --parents www/; mv !(teste.sh) $_
   fi
 
   if [ -d $DIRECTORY_NGINX ]; then
