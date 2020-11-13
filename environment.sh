@@ -63,6 +63,11 @@ if [ ! -f .env ]; then
     exit;
   fi
 
+  if [ ! -d "www/" ]; then
+    echo "##### Configuração inicial do projeto #####"
+    mkdir www && mv {,.[^.]}*  www/
+  fi
+
   if [ -d $DIRECTORY_NGINX ]; then
      rm -f "$DIRECTORY_NGINXsites-available/$ENV_PROJECT" "$DIRECTORY_NGINXsites-enabled/$ENV_PROJECT"
      cp proxy $ENV_PROJECT
@@ -71,11 +76,6 @@ if [ ! -f .env ]; then
      cp "$ENV_PROJECT" "$DIRECTORY_NGINXsites-available/"
      ln -s "$DIRECTORY_NGINXsites-available/$ENV_PROJECT" "$DIRECTORY_NGINXsites-enabled/"
      r, "$ENV_PROJECT"
-  fi
-
-  if [ ! -d "www/" ]; then
-    echo "##### Configuração inicial do projeto #####"
-    mkdir www && mv {,.[^.]}*  www/
   fi
 
   sed -i "s/ENV_PROJECT/$ENV_PROJECT$UNDERLINE/g" sample.env
