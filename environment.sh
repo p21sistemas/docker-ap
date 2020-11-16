@@ -1,10 +1,5 @@
 #!/usr/bin/env ksh
 
-if [ "$EUID" -ne 0 ]
-  then echo "Por favor, execute como root"
-  exit
-fi
-
 DIRECTORY_NGINX='/etc/nginx/'
 
 #########################
