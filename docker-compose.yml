@@ -4,7 +4,7 @@ services:
     build:
       context: ./bin/webserver
     container_name: ${PROJECT_NAME}webserver
-    image: ${PROJECT_NAME}
+    image: ${PROJECT_NAME}webserver
     ports:
       - ${PORT}:80 # external_port:internal_port
     external_links:
