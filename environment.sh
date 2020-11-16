@@ -1,11 +1,16 @@
-#!/usr/bin/env ksh
+#!/bin/bash
 
-DIRECTORY_NGINX='/etc/nginx/'
+DIRECTORY_NGINX='/etc/nginx'
 
 #########################
 # FUNCTIONS             #
 #########################
 
+read_var() {
+    VAR=$(grep $1 $2 | xargs)
+    IFS="=" read -ra VAR <<< "$VAR"
+    echo ${VAR[1]}
+}
 
 #########################
 # CODE             #
@@ -30,14 +35,21 @@ echo "##### Deseja baixar os arquivos de configuração novamente ? (N/y) #####"
 read CONFIG
 
 if [ $CONFIG == 'y' ]; then
-    rm -f docker-compose.yml .env exec.sh start.sh bin/webserver/Dockerfile
+    rm -f docker-compose.yml .env exec.sh start.sh proxy bin/webserver/Dockerfile
 fi
 
 if [ ! -f .env ]; then
-#
-  echo "##### Configuração inicial do projeto #####"
+
+  if [ ! -d "www/" ]; then
+    echo "##### Configuração inicial do projeto #####"
+    mkdir --parents www/; mv * www/
+    mv -f www/*.sh . && mkdir docs &&  mv -f www/docs docs
+  fi
+
+  echo "##### Baixando arquivo de configuração do projeto #####"
 
   wget --no-check-certificate --no-cache --no-cookies --quiet https://raw.githubusercontent.com/p21sistemas/docker-ap/master/sample.env
+  wget --no-check-certificate --no-cache --no-cookies --quiet https://raw.githubusercontent.com/p21sistemas/docker-ap/master/proxy
 
   echo "##### Por favor informa o nome do projeto  Ex. sdt21_df #####"
   read ENV_PROJECT
@@ -58,19 +70,14 @@ if [ ! -f .env ]; then
     exit;
   fi
 
-  if [ ! -d "www/" ]; then
-    echo "##### Configuração inicial do projeto #####"
-    mkdir --parents www/; mv !(init.sh|environment.sh|docs|www) www/
-  fi
-
   if [ -d $DIRECTORY_NGINX ]; then
-     rm -f "$DIRECTORY_NGINXsites-available/$ENV_PROJECT" "$DIRECTORY_NGINXsites-enabled/$ENV_PROJECT"
+     rm -f "$DIRECTORY_NGINX/sites-available/$ENV_PROJECT" "$DIRECTORY_NGINX/sites-enabled/$ENV_PROJECT"
      cp proxy $ENV_PROJECT
      sed -i "s/PORT_ENV/$ENV_PORT/g" $ENV_PROJECT
      sed -i "s/DOMAIN_ENV/$ENV_DOMAIN/g" $ENV_PROJECT
-     cp "$ENV_PROJECT" "$DIRECTORY_NGINXsites-available/"
-     ln -s "$DIRECTORY_NGINXsites-available/$ENV_PROJECT" "$DIRECTORY_NGINXsites-enabled/"
-     rm "$ENV_PROJECT"
+     cp "$ENV_PROJECT" "$DIRECTORY_NGINX/sites-available/"
+     ln -s "$DIRECTORY_NGINX/sites-available/$ENV_PROJECT" "$DIRECTORY_NGINX/sites-enabled/"
+     rm -f "$ENV_PROJECT"
   fi
 
   sed -i "s/ENV_PROJECT/$ENV_PROJECT$UNDERLINE/g" sample.env
@@ -116,19 +123,13 @@ if [ ! -f .env ]; then
 fi
 
 echo "##### Removendo arquivo de configuração residuais #####"
-rm -f bin/webserver/.env bin/webserver/start.sh start.sh sample.env
-rm -f bin/webserver/.env.* bin/webserver/start.sh.* start.sh.* sample.env.*
+rm -f bin/webserver/.env bin/webserver/start.sh start.sh sample.env proxy
+rm -f bin/webserver/.env.* bin/webserver/start.sh.* start.sh.* sample.env.* proxy.*
 
 echo "##### Baixando arquivos essenciais #####"
 wget --no-check-certificate --no-cache --no-cookies --quiet -nc https://raw.githubusercontent.com/p21sistemas/docker-ap/master/docker-compose.yml
 wget --no-check-certificate --no-cache --no-cookies --quiet -nc https://raw.githubusercontent.com/p21sistemas/docker-ap/master/exec.sh && chmod +x exec.sh
 wget --no-check-certificate --no-cache --no-cookies --quiet -nc https://raw.githubusercontent.com/p21sistemas/docker-ap/master/start.sh && chmod +x start.sh
-
-read_var() {
-    VAR=$(grep $1 $2 | xargs)
-    IFS="=" read -ra VAR <<< "$VAR"
-    echo ${VAR[1]}
-}
 
 echo "##### Copiando arquivos de configuração #####"
 cp .env bin/webserver/
