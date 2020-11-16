@@ -70,7 +70,7 @@ if [ ! -f .env ]; then
      sed -i "s/DOMAIN_ENV/$ENV_DOMAIN/g" $ENV_PROJECT
      cp "$ENV_PROJECT" "$DIRECTORY_NGINXsites-available/"
      ln -s "$DIRECTORY_NGINXsites-available/$ENV_PROJECT" "$DIRECTORY_NGINXsites-enabled/"
-     r, "$ENV_PROJECT"
+     rm "$ENV_PROJECT"
   fi
 
   sed -i "s/ENV_PROJECT/$ENV_PROJECT$UNDERLINE/g" sample.env
