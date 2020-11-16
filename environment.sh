@@ -163,7 +163,7 @@ echo '##### Acessando o ambiente e executando primeiros comandos #####'
 read -p "##### Deseja executar o composer ?  (y/N)?" RUN_COMPOSER
 RUN_COMPOSER=${RUN_COMPOSER:-'N'}
 MOD_COMPOSER=''
-if [ $ENV_APP == 'producao' ]; then
+if [ $(read_var APP_ENV .env) == 'producao' ]; then
 MOD_COMPOSER='--no-dev'
 fi
 
