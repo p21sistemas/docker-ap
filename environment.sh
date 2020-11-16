@@ -1,16 +1,7 @@
-#!/bin/bash
-
-if [ ! -f .env ]; then
-  if [ ! -d "www/" ]; then
-    echo "##### Configuração inicial do projeto #####"
-    mkdir --parents www/; mv !(init.sh|environment.sh|docs|www) $_
-  fi
-fi
-
-sudo su
+#!/usr/bin/env ksh
 
 if [ "$EUID" -ne 0 ]
-  then echo "Por favor, execute o restante do comento como root"
+  then echo "Por favor, execute como root"
   exit
 fi
 
@@ -70,6 +61,11 @@ if [ ! -f .env ]; then
   if [ $ENV_APP != 'desenvolvimento' ] && [ $ENV_APP != 'teste' ] && [ $ENV_APP != 'producao' ]; then
     echo "##### O ambiente selecionado é inválido #####"
     exit;
+  fi
+
+  if [ ! -d "www/" ]; then
+    echo "##### Configuração inicial do projeto #####"
+    mkdir --parents www/; mv !(init.sh|environment.sh|docs|www) www/
   fi
 
   if [ -d $DIRECTORY_NGINX ]; then
