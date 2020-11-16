@@ -7,6 +7,8 @@ if [ ! -f .env ]; then
   fi
 fi
 
+sudo su
+
 if [ "$EUID" -ne 0 ]
   then echo "Por favor, execute o restante do comento como root"
   exit
