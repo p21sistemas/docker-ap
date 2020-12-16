@@ -11,24 +11,23 @@ read_var() {
 APPLICATION_ENV=$(read_var APP_ENV .env)
 PHP_ENV=$(read_var PHP_VERSION .env)
 
-
 # Cria um arquivo de configuração para o apache, de forma global
 touch /etc/apache2/conf-enabled/environment.conf
 echo SetEnv APP_ENV "'$APPLICATION_ENV'">> /etc/apache2/conf-enabled/environment.conf
 
-# Se a variavel de ambiente for desenvolvimenot, essas coisas são instalaos
+# Se a variável de ambiente for desenvolvimento, essas coisas são instalados
 # Coisas do ambiente de desenvolvimento
 if [ $APPLICATION_ENV == 'desenvolvimento' ]; then
 
 
-    if [ PHP_ENV == '72' ]; then
+    if [ $PHP_ENV == '72' ]; then
        pecl install xdebug
-       XDEBUG= 'zend_extension=//usr/lib/php/20170718/xdebug.so'
+       XDEBUG='zend_extension=//usr/lib/php/20170718/xdebug.so'
        PHP='7.2'
-    elif [ PHP_ENV == '56' ]; then
+    elif [ $PHP_ENV == '56' ]; then
       #Install XDebug
        pecl install xdebug-2.5.5
-       XDEBUG= 'zend_extension=/usr/lib/php/20131226/xdebug.so'
+       XDEBUG='zend_extension=/usr/lib/php/20131226/xdebug.so'
        PHP='5.6'
     fi
 
