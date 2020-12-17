@@ -131,6 +131,16 @@ wget --no-check-certificate --no-cache --no-cookies --quiet -nc https://raw.gith
 wget --no-check-certificate --no-cache --no-cookies --quiet -nc https://raw.githubusercontent.com/p21sistemas/docker-ap/master/exec.sh && chmod +x exec.sh
 wget --no-check-certificate --no-cache --no-cookies --quiet -nc https://raw.githubusercontent.com/p21sistemas/docker-ap/master/start.sh && chmod +x start.sh
 
+PHP_ENV=$(read_var PHP_VERSION .env)
+
+if [ $PHP_ENV == '72' ]; then
+  sed -i "s/ENV_PHP_VERSION/7.2/g" cdocker-compose.yml
+elif [ $PHP_ENV == '56' ]; then
+  sed -i "s/ENV_PHP_VERSION/5.6/g" cdocker-compose.yml
+fi
+
+sed -i "s/ENV_APP/$ENV_APP/g" config/apache2/sites-enabled/default.conf
+
 echo "##### Copiando arquivos de configuração #####"
 cp .env bin/webserver/
 cp start.sh bin/webserver/
