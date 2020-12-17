@@ -158,6 +158,12 @@ echo "##### Removendo arquivo de configuração #####"
 rm -f bin/webserver/.env bin/webserver/start.sh start.sh sample.env
 rm -f bin/webserver/.env.* bin/webserver/start.sh.* start.sh.* sample.env.*
 
+echo "##### Alterando permissão de pastas #####"
+
+chown -R www-data:www-data './data'
+chown -R www-data:www-data './www/data'
+chown -R www-data:www-data './www/storage'
+
 echo '##### Acessando o ambiente e executando primeiros comandos #####'
 
 read -p "##### Deseja executar o composer ?  (y/N)?" RUN_COMPOSER
