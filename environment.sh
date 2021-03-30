@@ -31,8 +31,8 @@ PHP_STRING='php'
 
 UNDERLINE='_'
 
-echo "##### Deseja baixar os arquivos de configuração novamente ? (N/y) #####"
-read CONFIG
+read -p "##### Deseja baixar os arquivos de configuração novamente ? (y/N) #####" CONFIG
+CONFIG=${CONFIG:-'N'}
 
 if [ $CONFIG == 'y' ]; then
     rm -f docker-compose.yml .env exec.sh start.sh proxy bin/webserver/Dockerfile
@@ -153,8 +153,9 @@ echo "##### Atualizando imagem #####"
 
 docker pull p21sistemas/ap:u$(read_var UBUNTU_VERSION .env)$PHP_STRING$(read_var PHP_VERSION .env)
 
-echo "##### Deseja ignorar o cache o fazer build? ? (N/y) #####"
-read CACHE
+
+read -p  "##### Deseja ignorar o cache o fazer build? ? (y/N) #####" CACHE
+CACHE=${CACHE:-'N'}
 
 if [ $CACHE == 'y' ]; then
     NOCACHE='--no-cache'
