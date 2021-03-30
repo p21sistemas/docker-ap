@@ -124,7 +124,7 @@ fi
 
 echo "##### Removendo arquivo de configuração residuais #####"
 rm -f bin/webserver/.env bin/webserver/start.sh start.sh sample.env proxy
-rm -f bin/webserver/.env.* bin/webserver/start.sh.* start.sh.* sample.env.* proxy.*
+rm -f bin/webserver/.env.* bin/webserver/start.sh.* start.sh.* sample.env.* proxy.* *.cron
 
 echo "##### Baixando arquivos essenciais #####"
 wget --no-check-certificate --no-cache --no-cookies --quiet -nc https://raw.githubusercontent.com/p21sistemas/docker-ap/master/docker-compose.yml
