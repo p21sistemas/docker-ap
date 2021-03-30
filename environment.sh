@@ -18,8 +18,8 @@ read_var() {
 
 echo "##### Iniciando ambiente #####"
 if [ ! -d $DIRECTORY_NGINX ]; then
-  read -p "##### Deseja instalar o nginx (servidor de proxy) ?  (Y/n)?" INSTALL_NGINX
-  INSTALL_NGINX=${INSTALL_NGINX:-'Y'}
+  read -p "##### Deseja instalar o nginx (servidor de proxy) ?  (y/N)?" INSTALL_NGINX
+  INSTALL_NGINX=${INSTALL_NGINX:-'N'}
   if [ $INSTALL_NGINX == 'y' ] || [ $INSTALL_NGINX == 'Y' ]; then
      apt-get update && apt-get -y upgrade && apt-get  install -y nginx
   fi
@@ -134,9 +134,9 @@ wget --no-check-certificate --no-cache --no-cookies --quiet -nc https://raw.gith
 PHP_ENV=$(read_var PHP_VERSION .env)
 
 if [ $PHP_ENV == '72' ]; then
-  sed -i "s/ENV_PHP_VERSION/7.2/g" cdocker-compose.yml
+  sed -i "s/ENV_PHP_VERSION/7.2/g" docker-compose.yml
 elif [ $PHP_ENV == '56' ]; then
-  sed -i "s/ENV_PHP_VERSION/5.6/g" cdocker-compose.yml
+  sed -i "s/ENV_PHP_VERSION/5.6/g" docker-compose.yml
 fi
 
 sed -i "s/ENV_APP/$ENV_APP/g" config/apache2/sites-enabled/default.conf
@@ -144,6 +144,10 @@ sed -i "s/ENV_APP/$ENV_APP/g" config/apache2/sites-enabled/default.conf
 echo "##### Copiando arquivos de configuração #####"
 cp .env bin/webserver/
 cp start.sh bin/webserver/
+
+  if [ -d "config/cron.d" ]; then
+    cp config/cron.d/* bin/webserver/
+  fi
 
 echo "##### Atualizando imagem #####"
 
