@@ -162,11 +162,11 @@ if [ $CACHE == 'y' ]; then
 fi
 
 echo "##### Realizando build #####"
-docker-compose -f docker-compose.yml build $NOCACHE
+docker compose -f docker-compose.yml build $NOCACHE
 
 echo "##### Iniciando container #####"
 
-docker-compose -f docker-compose.yml up -d --force
+docker compose -f docker-compose.yml up -d --force-recreate
 
 echo "##### Removendo arquivo de configuração #####"
 
