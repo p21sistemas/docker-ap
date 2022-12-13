@@ -1,4 +1,4 @@
-FROM ubuntu:18.04
+FROM ubuntu:20.04
 
 ## Sem interação humana
 ARG DEBIAN_FRONTEND=noninteractive
@@ -14,14 +14,15 @@ RUN ln -f -s /usr/share/zoneinfo/America/Sao_Paulo /etc/localtime
 
 ## Apache
 RUN apt-get -y install apache2
-RUN  a2enmod rewrite
+RUN a2enmod rewrite
 
 ## Adicionando repositório PHP
 RUN add-apt-repository -y ppa:ondrej/php && apt-get update
 
 ## Instalando PHP e extensões
 RUN apt-get -y install php7.4 libapache2-mod-php7.4 php7.4-cli php7.4-common php7.4-mysql \
-php7.4-curl php7.4-dev php7.4-mbstring php7.4-gd php7.4-json php7.4-redis php7.4-xml php7.4-zip php7.4-intl php7.4-soap
+php7.4-curl php7.4-dev php7.4-mbstring php7.4-gd php7.4-json php7.4-redis php7.4-xml  \
+php7.4-zip php7.4-intl php7.4-soap php7.4-imagick
 
 ## Limpar
 RUN rm -rf /tmp/pear \
