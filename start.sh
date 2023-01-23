@@ -11,6 +11,8 @@ read_var() {
 APPLICATION_ENV=$(read_var APP_ENV .env)
 PHP_ENV=$(read_var PHP_VERSION .env)
 
+redis-server --daemonize yes
+
 # Cria um arquivo de configuração para o apache, de forma global
 touch /etc/apache2/conf-enabled/environment.conf
 echo SetEnv APP_ENV "'$APPLICATION_ENV'">> /etc/apache2/conf-enabled/environment.conf
