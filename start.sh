@@ -24,7 +24,7 @@ if [ $APPLICATION_ENV == 'desenvolvimento' ]; then
 
     if [ $PHP_ENV == '72' ]; then
        pecl install xdebug
-       XDEBUG='zend_extension=//usr/lib/php/20170718/xdebug.so'
+       XDEBUG='zend_extension=/usr/lib/php/20170718/xdebug.so'
        PHP='7.2'
     elif [ $PHP_ENV == '56' ]; then
       #Install XDebug
