@@ -20,9 +20,9 @@ RUN a2enmod rewrite
 RUN add-apt-repository -y ppa:ondrej/php && apt-get update
 
 ## Instalando PHP e extensões
-RUN apt-get -y install php7.4 libapache2-mod-php7.4 php7.4-cli php7.4-common php7.4-mysql \
-php7.4-curl php7.4-dev php7.4-mbstring php7.4-gd php7.4-json php7.4-redis php7.4-xml  \
-php7.4-zip php7.4-intl php7.4-soap php7.4-imagick
+RUN apt-get -y install php8.2 libapache2-mod-php8.2 php8.2-cli php8.2-common php8.2-mysql \
+php8.2-curl php8.2-dev php8.2-mbstring php8.2-gd php8.2-json php8.2-redis php8.2-xml  \
+php8.2-zip php8.2-intl php8.2-soap php8.2-imagick
 
 ## Limpar
 RUN rm -rf /tmp/pear \
