@@ -58,6 +58,17 @@ RUN docker-php-ext-install pdo_mysql && docker-php-ext-enable pdo_mysql
 RUN docker-php-ext-install gd && docker-php-ext-enable gd
 RUN docker-php-ext-install pdo_sqlite && docker-php-ext-enable pdo_sqlite
 RUN docker-php-ext-install curl && docker-php-ext-enable curl
+RUN docker-php-ext-install calendar && docker-php-ext-enable calendar
+RUN docker-php-ext-install exif && docker-php-ext-enable exif
+RUN docker-php-ext-install gettext && docker-php-ext-enable gettext
+RUN docker-php-ext-install pcntl && docker-php-ext-enable pcntl
+RUN docker-php-ext-install sockets && docker-php-ext-enable sockets
+RUN docker-php-ext-install shmop && docker-php-ext-enable shmop
+RUN docker-php-ext-install sysvmsg && docker-php-ext-enable sysvmsg
+RUN docker-php-ext-install sysvsem && docker-php-ext-enable sysvsem
+RUN docker-php-ext-install sysvshm && docker-php-ext-enable sysvshm
+RUN docker-php-ext-install wddx && docker-php-ext-enable wddx
+RUN docker-php-ext-install xsl && docker-php-ext-enable xsl
 
 # Instala extensões via PECL
 RUN pecl install redis-6.0.2 && docker-php-ext-enable redis
