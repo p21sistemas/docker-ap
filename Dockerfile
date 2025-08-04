@@ -47,28 +47,29 @@ RUN  a2enmod rewrite
 RUN docker-php-ext-configure gd --with-freetype-dir=/usr/include/ --with-jpeg-dir=/usr/include/
 
 # Instalar extensões PHP internas
-RUN docker-php-ext-install mbstring && docker-php-ext-enable mbstring
-RUN docker-php-ext-install xml && docker-php-ext-enable xml
-RUN docker-php-ext-install zip && docker-php-ext-enable zip
-RUN docker-php-ext-install intl && docker-php-ext-enable intl
-RUN docker-php-ext-install soap && docker-php-ext-enable soap
-RUN docker-php-ext-install mysqli && docker-php-ext-enable mysqli
-RUN docker-php-ext-install pdo && docker-php-ext-enable pdo
-RUN docker-php-ext-install pdo_mysql && docker-php-ext-enable pdo_mysql
-RUN docker-php-ext-install gd && docker-php-ext-enable gd
-RUN docker-php-ext-install pdo_sqlite && docker-php-ext-enable pdo_sqlite
-RUN docker-php-ext-install curl && docker-php-ext-enable curl
-RUN docker-php-ext-install calendar && docker-php-ext-enable calendar
-RUN docker-php-ext-install exif && docker-php-ext-enable exif
-RUN docker-php-ext-install gettext && docker-php-ext-enable gettext
-RUN docker-php-ext-install pcntl && docker-php-ext-enable pcntl
-RUN docker-php-ext-install sockets && docker-php-ext-enable sockets
-RUN docker-php-ext-install shmop && docker-php-ext-enable shmop
-RUN docker-php-ext-install sysvmsg && docker-php-ext-enable sysvmsg
-RUN docker-php-ext-install sysvsem && docker-php-ext-enable sysvsem
-RUN docker-php-ext-install sysvshm && docker-php-ext-enable sysvshm
-RUN docker-php-ext-install wddx && docker-php-ext-enable wddx
-RUN docker-php-ext-install xsl && docker-php-ext-enable xsl
+RUN docker-php-ext-install mbstring
+RUN docker-php-ext-install xml
+RUN docker-php-ext-install zip
+RUN docker-php-ext-install intl
+RUN docker-php-ext-install soap
+RUN docker-php-ext-install mysqli
+RUN docker-php-ext-install pdo
+RUN docker-php-ext-install pdo_mysql
+RUN docker-php-ext-install gd
+RUN docker-php-ext-install pdo_sqlite
+RUN docker-php-ext-install curl
+RUN docker-php-ext-install calendar
+RUN docker-php-ext-install exif
+RUN docker-php-ext-install gettext
+RUN docker-php-ext-install pcntl
+RUN docker-php-ext-install sockets
+RUN docker-php-ext-install shmop
+RUN docker-php-ext-install sysvmsg
+RUN docker-php-ext-install sysvsem
+RUN docker-php-ext-install sysvshm
+RUN docker-php-ext-install wddx
+RUN docker-php-ext-install xsl
+RUN docker-php-ext-enable opcache
 
 # Instala extensões via PECL
 RUN pecl install redis-6.0.2 && docker-php-ext-enable redis
