@@ -34,7 +34,8 @@ RUN apt-get install -y \
     libreadline-dev \
     libxslt-dev \
     p7zip-full \
-    p7zip-rar
+    p7zip-rar \
+    imagemagick
 
 # Configurar fuso horário
 RUN ln -f -s /usr/share/zoneinfo/America/Sao_Paulo /etc/localtime
