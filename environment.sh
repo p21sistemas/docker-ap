@@ -175,9 +175,15 @@ rm -f bin/webserver/.env.* bin/webserver/start.sh.* start.sh.* sample.env.*
 
 echo "##### Alterando permissão de pastas #####"
 
-chown -R www-data:www-data './data'
-chown -R www-data:www-data './www/data'
-chown -R www-data:www-data './www/storage'
+if [ -d "./www/data" ]; then
+  chown -R www-data:www-data www/data
+  chmod -R ug+w www/data
+fi
+
+if [ -d "./www/storage" ]; then
+  chown -R www-data:www-data www/storage
+  chmod -R ug+w www/storage
+fi
 
 echo '##### Acessando o ambiente e executando primeiros comandos #####'
 
