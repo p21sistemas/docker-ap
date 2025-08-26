@@ -94,7 +94,7 @@ if [ ! -f .env ]; then
   touch bin/webserver/Dockerfile
   touch logs/apache2/.gitkeep
 
-  echo "##### Por favor informa a versão do ubuntu (18)"
+  echo "##### Por favor informa a versão do ubuntu (18, 24)"
   read ENV_UBUNTU
 
   echo "##### Por favor informa a versão do php (56, 72, 73)"
