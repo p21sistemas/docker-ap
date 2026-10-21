@@ -4,10 +4,10 @@ FROM ubuntu:24.04
 ARG DEBIAN_FRONTEND=noninteractive
 
 ## Atualizando sistema operacional
-RUN apt-get update && apt-get -y upgrade
+RUN apt-get update && apt-get -y upgrade && apt-get -y dist-upgrade
 
 ## Instalando pacotes essenciais
-RUN apt-get -y install apt-utils software-properties-common curl bash-completion vim git supervisor zip unzip htop
+RUN apt-get -y install apt-utils software-properties-common curl bash-completion vim git zip unzip
 
 ## Configurar fuso horário
 RUN ln -f -s /usr/share/zoneinfo/America/Sao_Paulo /etc/localtime
@@ -20,9 +20,10 @@ RUN a2enmod rewrite
 RUN add-apt-repository -y ppa:ondrej/php && apt-get update
 
 ## Instalando PHP e extensões
-RUN apt-get -y install php7.2 libapache2-mod-php7.2 php7.2-cli php7.2-common php7.2-mysql \
-    php7.2-curl php7.2-dev php7.2-mbstring php7.2-gd php7.2-json php7.2-redis php7.2-xml \
-    php7.2-zip php7.2-intl php7.2-soap php7.2-sqlite
+## Sem php5.6-dev: o xdebug de desenvolvimento vem do pacote php5.6-xdebug, instalado pelo projeto
+RUN apt-get -y install php5.6 libapache2-mod-php5.6 php5.6-cli php5.6-common php5.6-mysql \
+    php5.6-curl php5.6-mbstring php5.6-gd php5.6-json php5.6-redis php5.6-xml \
+    php5.6-zip php5.6-intl php5.6-soap php5.6-mcrypt php5.6-opcache
 
 ## Limpar
 RUN rm -rf /tmp/pear \

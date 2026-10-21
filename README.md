@@ -1,12 +1,14 @@
 # Sobre este repositório
 
-Este é o repositório Git da imagem Docker para apache com PHP 7.2. Consulte a página do Hub para obter ou ler sobre como usar uma imagem Docker e informações sobre contribuições e problemas.
+Este é o repositório Git da imagem Docker para apache com PHP 5.6. Consulte a página do Hub para obter ou ler sobre como usar uma imagem Docker e informações sobre contribuições e problemas.
+
+A imagem traz só o que é comum aos projetos em PHP 5.6. Cron, ghostscript, rclone, xdebug e afins ficam no Dockerfile de cada projeto.
 
 ## Executando
 Para executar o contêiner:
 
 ```
-$ docker run -d p21sistemas/ap:u24php72
+$ docker run -d p21sistemas/ap:u24php56
 ```
 
 Raiz da web padrão:
