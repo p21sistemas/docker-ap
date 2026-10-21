@@ -4,7 +4,7 @@ FROM ubuntu:24.04
 ARG DEBIAN_FRONTEND=noninteractive
 
 ## Atualizando sistema operacional
-RUN apt-get update && apt-get -y upgrade
+RUN apt-get update && apt-get -y upgrade && apt-get -y dist-upgrade
 
 ## Instalando pacotes essenciais
 RUN apt-get -y install apt-utils software-properties-common curl bash-completion vim git supervisor zip unzip htop
