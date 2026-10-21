@@ -16,6 +16,9 @@ RUN ln -f -s /usr/share/zoneinfo/America/Sao_Paulo /etc/localtime
 RUN apt-get -y install apache2
 RUN a2enmod rewrite
 
+## Repetir downloads que falham (o PPA devolve 503 quando sobrecarregado)
+RUN echo 'Acquire::Retries "10";' > /etc/apt/apt.conf.d/80-retries
+
 ## Adicionando repositório PHP
 RUN add-apt-repository -y ppa:ondrej/php && apt-get update
 
