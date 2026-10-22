@@ -23,10 +23,10 @@ RUN echo 'Acquire::Retries "10";' > /etc/apt/apt.conf.d/80-retries
 RUN add-apt-repository -y ppa:ondrej/php && apt-get update
 
 ## Instalando PHP e extensões
-## Sem php5.6-dev: o xdebug de desenvolvimento vem do pacote php5.6-xdebug, instalado pelo projeto
-RUN apt-get -y install php5.6 libapache2-mod-php5.6 php5.6-cli php5.6-common php5.6-mysql \
-    php5.6-curl php5.6-mbstring php5.6-gd php5.6-json php5.6-redis php5.6-xml \
-    php5.6-zip php5.6-intl php5.6-soap php5.6-mcrypt php5.6-opcache
+## Sem php7.4-dev: o xdebug de desenvolvimento vem do pacote php7.4-xdebug, instalado pelo projeto
+RUN apt-get -y install php7.4 libapache2-mod-php7.4 php7.4-cli php7.4-common php7.4-mysql \
+    php7.4-curl php7.4-mbstring php7.4-gd php7.4-json php7.4-redis php7.4-xml \
+    php7.4-zip php7.4-intl php7.4-soap php7.4-imagick php7.4-opcache
 
 ## Limpar
 RUN rm -rf /tmp/pear \
